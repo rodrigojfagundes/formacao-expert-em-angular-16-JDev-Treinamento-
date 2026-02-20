@@ -26,6 +26,12 @@
           name="login"
           formControlName="login"
         />
+        <div
+          *ngIf="loginForm.get('login')?.errors"
+          style="font-size: 8px; color: brown"
+        >
+          Login obrigatorio
+        </div>
       </div>
     </div>
     <div class="row mb-3">
@@ -38,6 +44,12 @@
           name="senha"
           formControlName="senha"
         />
+        <div
+          *ngIf="loginForm.get('senha')?.errors"
+          style="font-size: 8px; color: brown"
+        >
+          Senha obrigatoria
+        </div>
       </div>
     </div>
 
