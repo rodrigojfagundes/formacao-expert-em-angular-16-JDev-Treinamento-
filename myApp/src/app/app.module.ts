@@ -13,11 +13,12 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { InterceptorProjetoInterceptor } from './interceptor/interceptor-projeto.interceptor';
 import { HomeComponent } from './home/home.component';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './login/login/login.component';
 
 
 export const appRoutes: Routes = [
   
-  { path: 'login', component: AppComponent },
+  { path: 'login', component: LoginComponent },
   
   { path: '', component: AppComponent },
   
@@ -27,7 +28,7 @@ export const appRoutes: Routes = [
 export const routes = RouterModule.forRoot(appRoutes);
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent],
+  declarations: [AppComponent, HomeComponent, LoginComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
