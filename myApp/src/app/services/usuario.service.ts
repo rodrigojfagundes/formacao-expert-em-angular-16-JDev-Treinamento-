@@ -33,7 +33,16 @@ export class UsuarioService {
     return this.http
       .post<String>(this.urlApi + 'updateUserPessoa', u)
       .subscribe({
-        next: (res) => {},
+        next: (res) => {
+          var varResposta = JSON.stringify(res);
+          var jsonResposta = JSON.parse(varResposta);
+
+          if (jsonResposta.error != undefined) {
+            alert(jsonResposta.error);
+          } else {
+            alert(varResposta);
+          }
+        },
         error: (error) => {
           alert(error.error.error);
         },
