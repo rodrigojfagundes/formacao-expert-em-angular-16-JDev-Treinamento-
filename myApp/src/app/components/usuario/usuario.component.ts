@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Acesso } from 'src/app/model/acesso';
 import { UserPessoa } from 'src/app/model/user-pessoa';
+import { AcessoService } from 'src/app/services/acesso.service';
 import { EnderecoService } from 'src/app/services/endereco.service';
 import { LoginService } from 'src/app/services/login.service';
 import { PessoaFisicaService } from 'src/app/services/pessoaFisica.service';
@@ -14,12 +16,14 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 export class UsuarioComponent implements OnInit {
   lista = new Array<UserPessoa>();
   userProdForm: FormGroup;
+  acesso = new Array<Acesso>();
   user: UserPessoa;
 
   constructor(
     private fb: FormBuilder,
     private loginService: LoginService,
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+    private acessoService: AcessoService
   ) {
     this.user = new UserPessoa();
     this.userProdForm = this.fb.group({
@@ -27,6 +31,7 @@ export class UsuarioComponent implements OnInit {
       login: [null, Validators.required],
       senha: [null, Validators.required],
       pessoa: [null, Validators.required],
+      empresa: [this.loginService.objetoEmpresa(), Validators.required],
     });
   }
 
@@ -52,6 +57,7 @@ export class UsuarioComponent implements OnInit {
       login: [[null, Validators.required]],
       senha: [[null, Validators.required]],
       pessoa: [null, Validators.required],
+      empresa: [this.loginService.objetoEmpresa(), Validators.required],
     });
   }
 
@@ -72,6 +78,13 @@ export class UsuarioComponent implements OnInit {
           login: [this.user.login],
           senha: [this.user.senha],
           pessoa: [this.user.pessoa?.nome],
+        });
+        this.acessoService.listarAcessoTodos().subscribe({
+          next: (data) => {
+            this.acesso = data;
+            console.info('-----------acesso------------');
+            console.info(this.acesso);
+          },
         });
       },
       error: (error) => {
