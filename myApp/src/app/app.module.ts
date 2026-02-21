@@ -14,6 +14,7 @@ import { InterceptorProjetoInterceptor } from './interceptor/interceptor-projeto
 import { HomeComponent } from './home/home.component';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login/login.component';
+import { guardiaoGuard } from './guard/guardiao.guard';
 
 
 export const appRoutes: Routes = [
@@ -22,7 +23,9 @@ export const appRoutes: Routes = [
   
   { path: '', component: AppComponent },
   
-  { path: 'home', component: HomeComponent },
+  
+  
+  { path: 'home', component: HomeComponent, canActivate: [guardiaoGuard] },
 ];
 
 export const routes = RouterModule.forRoot(appRoutes);
