@@ -112,4 +112,17 @@ export class CategoriaProdutoService {
         this.loginService.codEmpresa()
     );
   }
+
+  
+  
+  
+  
+  
+  qtdePagina() {
+    return this.http.get<BigInteger>(
+      this.urlApi +
+        'qtdPaginaCategoriaProduto/' +
+        this.loginService.codEmpresa()
+    );
+  }
 }

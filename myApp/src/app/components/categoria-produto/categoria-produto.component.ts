@@ -22,6 +22,7 @@ export class CategoriaProdutoComponent implements OnInit {
   
   catproduto: CategoriaProduto;
   varPesquisa: String = '';
+  qtdPagina: Number = 0;
 
   
   
@@ -58,6 +59,16 @@ export class CategoriaProdutoComponent implements OnInit {
   
   
   ngOnInit(): void {
+    
+    
+    this.categoriaProdutoService.qtdePagina().subscribe({
+      next: (res) => {
+        this.qtdPagina = new Number(res);
+        console.info('--->> qtd pagina' + this.qtdPagina);
+      },
+      error: (error) => {},
+    });
+
     
     this.listaCategorias();
   }
