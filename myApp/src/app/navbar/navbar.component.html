@@ -20,9 +20,28 @@
           <a class="nav-link active" aria-current="page" href="#">Link 1</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" [routerLink]="['categoria-produto']"
-            >Link 2</a
+          <a class="nav-link" href="#">Link 2</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
           >
+            Cadastros
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item" [routerLink]="['categoria-produto']"
+                >Categoria de Produto</a
+              >
+            </li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
         </li>
         <li class="nav-item dropdown">
           <a
