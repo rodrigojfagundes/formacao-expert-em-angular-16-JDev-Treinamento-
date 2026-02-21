@@ -31,11 +31,26 @@ export class LoginService {
       .post<String>(environment.urlApiLocal + 'recuperarSenha', login)
       .subscribe({
         next: (res) => {
-          alert(JSON.stringify(res));
+          
+          
+          
+          
+          
+          
+          var respJson = JSON.stringify(res);
+          var resposta = JSON.parse(respJson);
+
+          alert(resposta.msg);
         },
         error: (error) => {
-          console.info(error);
-          alert('Erro ao recuperar senha: ' + error);
+          
+          
+          
+          
+          
+          
+          var respJson = JSON.stringify(error);
+          var resposta = JSON.parse(respJson);
         },
       });
   }
