@@ -30,6 +30,7 @@ import {
 import { PessoaFisicaComponent } from './components/pessoa-fisica/pessoa-fisica.component';
 import { UsuarioComponent } from './components/usuario/usuario.component';
 import { FormaPagamentoComponent } from './components/forma-pagamento/forma-pagamento.component';
+import { CupomDescontoComponent } from './components/cupom-desconto/cupom-desconto.component';
 
 
 export const appRoutes: Routes = [
@@ -111,6 +112,7 @@ export const routes = RouterModule.forRoot(appRoutes);
     PessoaFisicaComponent,
     UsuarioComponent,
     FormaPagamentoComponent,
+    CupomDescontoComponent,
   ],
   imports: [
     BrowserModule,
