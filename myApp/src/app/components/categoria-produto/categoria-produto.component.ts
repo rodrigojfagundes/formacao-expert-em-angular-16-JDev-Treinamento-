@@ -35,7 +35,7 @@ export class CategoriaProdutoComponent {
     
     
     
-    empresa: [Number(this.loginService.codEmpresa()), Validators.required],
+    empresa: [this.loginService.objetoEmpresa(), Validators.required],
   });
 
   

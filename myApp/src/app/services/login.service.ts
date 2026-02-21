@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Usuario } from '../model/usuario';
 import { Route, Router } from '@angular/router';
+import { PessoaJuridica } from '../model/pessoa-juridica';
 
 @Injectable({
   providedIn: 'root',
@@ -70,8 +71,17 @@ export class LoginService {
 
   
   
+  
   codEmpresa() {
     return localStorage.getItem('empresa');
+  }
+
+  
+  
+  objetoEmpresa(): PessoaJuridica {
+    
+    
+    return new PessoaJuridica(Number(this.codEmpresa()));
   }
 
   

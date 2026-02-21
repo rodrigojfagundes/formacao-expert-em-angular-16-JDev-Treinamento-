@@ -23,10 +23,16 @@ export class CategoriaProdutoService {
       .post<String>(this.urlApi + 'salvarCategoria', categoriaProduto)
       .subscribe({
         
-        next: (res) => {},
+        next: (res) => {
+          console.info(
+            '---------------------------------retorno do salvar------------------------------'
+          );
+          console.info(res);
+          alert('Salvo com sucesso');
+        },
         error: (error) => {
-          console.info(error);
-          alert('Deu erro: ' + error.error.text);
+          console.info(error.error.error);
+          alert('Deu erro: ' + error.error.error);
         },
       });
   }
