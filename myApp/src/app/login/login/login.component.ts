@@ -53,7 +53,6 @@ export class LoginComponent {
   
   
   
-  
   loginObjeto(): Usuario {
     return {
       login: this.loginForm.get('login')?.value!,
@@ -61,6 +60,7 @@ export class LoginComponent {
     };
   }
 
+  
   
   
   

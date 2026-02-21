@@ -2,7 +2,7 @@
   Cadastro de categoria de produto
 </p>
 
-<form class="row g-3">
+<form class="row g-3" [formGroup]="catProdForm">
   <div class="col-2">
     <label for="id" class="form-label">ID:</label>
     <input
@@ -12,6 +12,7 @@
       readonly
       name="id"
       placeholder="ID"
+      formControlName="id"
     />
   </div>
   <div class="col-9">
@@ -21,11 +22,15 @@
       class="form-control"
       id="nomeDesc"
       name="nomeDesc"
+      required="true"
       placeholder="Nome da categoria"
+      formControlName="nomeDesc"
     />
   </div>
 
   <div class="col-12">
-    <button type="submit" class="btn btn-primary">Salvar</button>
+    <button type="submit" class="btn btn-primary" (click)="cadProdCategoria()">
+      Salvar
+    </button>
   </div>
 </form>
