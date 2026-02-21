@@ -6,6 +6,12 @@ import { environment } from 'src/environments/environment';
 
 
 
+
+
+
+
+
+
 export const guardiaoGuard: CanActivateFn = (route, state) => {
   
 
@@ -13,7 +19,6 @@ export const guardiaoGuard: CanActivateFn = (route, state) => {
 
   
   var username = localStorage.getItem('username');
-  
   var roles = route.data;
 
   
@@ -25,11 +30,12 @@ export const guardiaoGuard: CanActivateFn = (route, state) => {
   
   
   
-  var role = console.info(JSON.stringify(roles));
+  
+  
+  
+  var role = JSON.parse(JSON.stringify(roles)).role.toString();
   
   var autorization = '' + localStorage.getItem('Authorization');
-
-  
 
   
   
@@ -50,10 +56,19 @@ export const guardiaoGuard: CanActivateFn = (route, state) => {
   request.send();
 
   
-  var possuiAcessoRetorno = request.responseText;
-
-  console.info('possuiAcessoRetorno: ' + possuiAcessoRetorno);
+  
+  
+  
+  
+  var possuiAcessoRetorno =
+    request.responseText === 'true' ||
+    new Boolean(request.responseText) === true;
 
   
-  return inject(LoginService).usuarioLogado();
+  
+  var usuarioLogado = inject(LoginService).usuarioLogado();
+
+  
+  
+  return usuarioLogado && possuiAcessoRetorno;
 };
