@@ -23,6 +23,8 @@ export class CategoriaProdutoComponent implements OnInit {
   catproduto: CategoriaProduto;
   varPesquisa: String = '';
   qtdPagina: Number = 0;
+  
+  arrayNumber: Number[] = [];
 
   
   
@@ -63,8 +65,15 @@ export class CategoriaProdutoComponent implements OnInit {
     
     this.categoriaProdutoService.qtdePagina().subscribe({
       next: (res) => {
-        this.qtdPagina = new Number(res);
-        console.info('--->> qtd pagina' + this.qtdPagina);
+        this.qtdPagina = Number(res);
+        
+        
+        
+        this.arrayNumber = Array(this.qtdPagina)
+          .fill(0)
+          .map((x, i) => i);
+
+        console.info(this.arrayNumber);
       },
       error: (error) => {},
     });
@@ -212,5 +221,12 @@ export class CategoriaProdutoComponent implements OnInit {
           alert(error);
         },
       });
+  }
+  
+  
+  
+  
+  buscarPagina(p: Number): void {
+    console.info('buscar page' + p);
   }
 }
