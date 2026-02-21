@@ -20,12 +20,15 @@ export class UsuarioComponent implements OnInit {
     private usuarioService: UsuarioService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.listUser();
+  }
 
   listUser() {
     this.usuarioService.listUserByEmpresa().subscribe({
       next: (res) => {
         this.lista = res;
+        console.info(this.lista);
       },
       error: (error) => {
         alert(error);
