@@ -14,13 +14,16 @@ export class FormaPagamentoComponent implements OnInit {
   lista = new Array<FormaPagamento>();
   
   FormPagProdForm: FormGroup;
+  formPag: FormaPagamento;
 
   constructor(
     private fb: FormBuilder,
     private loginService: LoginService,
     private formaPagamento: FormaPagamento,
-    private formaPagamentoService: FormaPagamentoService
+    private formaPagamentoService: FormaPagamentoService,
   ) {
+    this.formPag = new FormaPagamento();
+
     this.FormPagProdForm = this.fb.group({
       id: [],
       descricao: [null, Validators.required],
@@ -50,5 +53,17 @@ export class FormaPagamentoComponent implements OnInit {
       this.formaPagamentoService.deletar(c);
       this.listaFormaPagamento();
     }
+  }
+
+  editarFp(c: FormaPagamento): void {
+    console.info(c);
+
+    this.formPag = c;
+
+    this.FormPagProdForm = this.fb.group({
+      id: [c.id],
+      descricao: [c.descricao, Validators.required],
+      empresa: [c.empresa, Validators.required],
+    });
   }
 }

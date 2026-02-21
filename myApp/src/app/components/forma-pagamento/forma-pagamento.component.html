@@ -73,7 +73,9 @@
       <td>{{ c.descricao }}</td>
       
       <td>
-        <button type="button" class="btn btn-primary">Editar</button>
+        <button type="button" class="btn btn-primary" (click)="editarFp(c)">
+          Editar
+        </button>
       </td>
       <td>
         <button type="button" class="btn btn-danger" (click)="deletar(c)">
