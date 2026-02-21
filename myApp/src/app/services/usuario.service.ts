@@ -48,4 +48,25 @@ export class UsuarioService {
         },
       });
   }
+
+  adicionaRemoveAcesso(idAcesso: any, idUser: any) {
+    var userAcesso = idAcesso + '|' + idUser;
+    return this.http
+      .post<String>(this.urlApi + 'adicionaRemoreAcesso', userAcesso)
+      .subscribe({
+        next: (res) => {
+          var varResposta = JSON.stringify(res);
+          var jsonResposta = JSON.parse(varResposta);
+
+          if (jsonResposta.error != undefined) {
+            alert(jsonResposta.error);
+          } else {
+            alert(varResposta);
+          }
+        },
+        error: (error) => {
+          alert(error.error.error);
+        },
+      });
+  }
 }

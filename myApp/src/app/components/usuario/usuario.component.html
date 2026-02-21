@@ -87,7 +87,13 @@
       
       <tr *ngFor="let c of acesso">
         
-        <td><input type="checkbox" checked="{{ c.possuiAcesso }}" /></td>
+        <td>
+          <input
+            type="checkbox"
+            checked="{{ c.possuiAcesso }}"
+            (change)="adicionaRemoveAcesso(c)"
+          />
+        </td>
         <td>{{ c.descricao }}</td>
       </tr>
     </tbody>

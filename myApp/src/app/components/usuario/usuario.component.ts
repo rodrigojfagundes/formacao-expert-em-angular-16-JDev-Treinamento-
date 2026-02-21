@@ -116,4 +116,11 @@ export class UsuarioComponent implements OnInit {
     this.user = this.userObjeto();
     this.usuarioService.salvarUserPessoa(this.user);
   }
+
+  adicionaRemoveAcesso(ac: Acesso): void {
+    console.info(ac.id);
+    console.info(this.user);
+
+    this.usuarioService.adicionaRemoveAcesso(ac.id, this.user.id);
+  }
 }
