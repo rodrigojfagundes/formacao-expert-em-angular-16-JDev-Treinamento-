@@ -1,8 +1,8 @@
 <p style="text-align: center; font-weight: bold; font-size: 15px">
-  Cadastro Pessoa Juridica
+  Cadastro Pessoa Fisica
 </p>
 
-<form class="row g-3" [formGroup]="pjProdForm">
+<form class="row g-3" [formGroup]="pfProdForm">
   <input type="hidden" id="empresa" name="empresa" formControlName="empresa" />
 
   <div class="col-2">
@@ -14,125 +14,8 @@
       readonly
       name="id"
       formControlName="id"
-      (ngModel)="pjProdForm.get('id')"
+      (ngModel)="pfProdForm.get('id')"
     />
-  </div>
-  <div class="col-5">
-    <label for="nomeFantasia" class="form-label">Nome do fantasia</label>
-    <input
-      type="text"
-      maxlength="100"
-      class="form-control"
-      id="nomeFantasia"
-      name="nomeFantasia"
-      required
-      formControlName="nomeFantasia"
-    />
-    <div
-      *ngIf="pjProdForm.get('nomeFantasia')?.errors"
-      style="font-size: 8px; color: brown"
-    >
-      * Nome fantasia
-    </div>
-  </div>
-
-  
-  <div class="col-5">
-    <label for="cnpj" class="form-label">Cnpj</label>
-    <input
-      type="text"
-      maxlength="100"
-      class="form-control"
-      id="cnpj"
-      name="cnpj"
-      required
-      formControlName="cnpj"
-      mask="00.000.000/0000-00"
-    />
-    <div
-      *ngIf="pjProdForm.get('cnpj')?.errors"
-      style="font-size: 8px; color: brown"
-    >
-      * Cnpj
-    </div>
-  </div>
-
-  <div class="col-6">
-    <label for="inscEstadual" class="form-label">Inscrição estadual</label>
-    <input
-      type="text"
-      maxlength="100"
-      class="form-control"
-      id="inscEstadual"
-      name="inscEstadual"
-      required
-      formControlName="inscEstadual"
-      mask="0000000-00"
-    />
-    <div
-      *ngIf="pjProdForm.get('inscEstadual')?.errors"
-      style="font-size: 8px; color: brown"
-    >
-      * Inscrição estadual
-    </div>
-  </div>
-
-  <div class="col-6">
-    <label for="inscMunicipal" class="form-label">Inscrição municipal</label>
-    <input
-      type="text"
-      maxlength="100"
-      class="form-control"
-      id="inscMunicipal"
-      name="inscMunicipal"
-      required
-      formControlName="inscMunicipal"
-    />
-    <div
-      *ngIf="pjProdForm.get('inscMunicipal')?.errors"
-      style="font-size: 8px; color: brown"
-    >
-      * Inscrição municipal
-    </div>
-  </div>
-
-  <div class="col-4">
-    <label for="razaoSocial" class="form-label">Razão social</label>
-    <input
-      type="text"
-      maxlength="100"
-      class="form-control"
-      id="razaoSocial"
-      name="razaoSocial"
-      required
-      formControlName="razaoSocial"
-    />
-    <div
-      *ngIf="pjProdForm.get('razaoSocial')?.errors"
-      style="font-size: 8px; color: brown"
-    >
-      * Razão social
-    </div>
-  </div>
-
-  <div class="col-4">
-    <label for="categoria" class="form-label">Categoria</label>
-
-    
-    
-    <select class="form-select" formControlName="categoria" required>
-      <option value="">[--Selecione--]</option>
-      <option value="MEI">Mei</option>
-      <option value="ME">Micro-Empresa</option>
-      <option value="LTDA">Sociedade Ltda</option>
-    </select>
-
-    <div
-      *ngIf="pjProdForm.get('categoria')?.errors"
-      style="font-size: 8px; color: brown"
-    >
-      * Categoria
-    </div>
   </div>
 
   <div class="col-4">
@@ -140,23 +23,63 @@
       >Tipo juridico ou fornecedor</label
     >
 
-    
     <select class="form-select" formControlName="tipoPessoa" required>
       <option value="">[--Selecione--]</option>
-      <option value="JURIDICA">Jurídica</option>
+      <option value="CLIENTE">Cliente</option>
       <option value="FORNECEDOR">Fornecedor</option>
     </select>
 
     <div
-      *ngIf="pjProdForm.get('tipoPessoa')?.errors"
+      *ngIf="pfProdForm.get('tipoPessoa')?.errors"
       style="font-size: 8px; color: brown"
     >
-      * Tipo juridico ou fornecedor
+      * Tipo cliente ou fornecedor
     </div>
   </div>
 
   <div class="col-4">
-    <label for="nome" class="form-label">Nome do responsável</label>
+    <label for="cpf" class="form-label">Cpf</label>
+    <input
+      type="text"
+      maxlength="100"
+      class="form-control"
+      id="cpf"
+      name="cpf"
+      required
+      formControlName="cpf"
+      mask="000.000.000-00"
+    />
+    <div
+      *ngIf="pfProdForm.get('cpf')?.errors"
+      style="font-size: 8px; color: brown"
+    >
+      * CPF
+    </div>
+  </div>
+
+  <div class="col-4">
+    <label for="dataNascimento" class="form-label">Data Nascimento</label>
+    <input
+      type="text"
+      maxlength="100"
+      class="form-control"
+      id="dataNascimento"
+      name="dataNascimento"
+      required
+      formControlName="dataNascimento"
+      mask="00/00/0000"
+      [dropSpecialCharacters]="false"
+    />
+    <div
+      *ngIf="pfProdForm.get('dataNascimento')?.errors"
+      style="font-size: 8px; color: brown"
+    >
+      * Data Nascimento
+    </div>
+  </div>
+
+  <div class="col-4">
+    <label for="nome" class="form-label">Nome</label>
     <input
       type="text"
       maxlength="100"
@@ -167,14 +90,13 @@
       formControlName="nome"
     />
     <div
-      *ngIf="pjProdForm.get('nome')?.errors"
+      *ngIf="pfProdForm.get('nome')?.errors"
       style="font-size: 8px; color: brown"
     >
       * Nome do responsável
     </div>
   </div>
 
-  
   <div class="col-4">
     <label for="email" class="form-label">E-mail do responsável</label>
     <input
@@ -188,14 +110,13 @@
       formControlName="email"
     />
     <div
-      *ngIf="pjProdForm.get('email')?.errors"
+      *ngIf="pfProdForm.get('email')?.errors"
       style="font-size: 8px; color: brown"
     >
       * E-mail do responsável
     </div>
   </div>
 
-  
   <div class="col-4">
     <label for="telefone" class="form-label">Telefone do responsável</label>
     <input
@@ -209,7 +130,7 @@
       mask="(00) 0 0000-0000"
     />
     <div
-      *ngIf="pjProdForm.get('telefone')?.errors"
+      *ngIf="pfProdForm.get('telefone')?.errors"
       style="font-size: 8px; color: brown"
     >
       * Telefone do responsável
@@ -221,7 +142,7 @@
       type="submit"
       class="btn btn-primary"
       (click)="salvaPj()"
-      [disabled]="!pjProdForm.valid"
+      [disabled]="!pfProdForm.valid"
     >
       Salvar
     </button>
@@ -230,7 +151,7 @@
       style="margin-left: 10px"
       class="btn btn-primary"
       (click)="novo()"
-      [disabled]="!pjProdForm.valid"
+      [disabled]="!pfProdForm.valid"
     >
       Novo
     </button>
@@ -275,7 +196,7 @@
   <tbody>
     <tr *ngFor="let c of lista">
       <td>{{ c.id }}</td>
-      <td>{{ c.nomeFantasia }}</td>
+      <td>{{ c.nome }}</td>
       <td>
         <button type="button" class="btn btn-primary" (click)="editarPj(c)">
           Editar
