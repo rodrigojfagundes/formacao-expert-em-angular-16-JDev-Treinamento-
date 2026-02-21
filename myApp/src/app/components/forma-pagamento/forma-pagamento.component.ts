@@ -85,6 +85,11 @@ export class FormaPagamentoComponent implements OnInit {
   salvarFormPag() {
     const fp = this.formaPagObjeto();
 
+    this.formaPagamentoService.salvarFp(fp);
+
+    this.novo();
+    this.listaFormaPagamento();
+
     console.info(fp);
   }
 }
