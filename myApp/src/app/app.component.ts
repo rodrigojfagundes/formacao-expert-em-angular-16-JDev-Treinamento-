@@ -16,6 +16,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Usuario } from './model/usuario';
+import { LoginService } from './services/login.service';
 
 @Component({
   selector: 'app-root',
@@ -29,7 +30,8 @@ export class AppComponent {
   
   
   
-  constructor(private fb: FormBuilder) {}
+  
+  constructor(private fb: FormBuilder, private loginService: LoginService) {}
 
   
   
@@ -61,8 +63,13 @@ export class AppComponent {
 
   
   
+  
+  
+  
   fazerLogin() {
     const usuario = this.loginObjeto();
+
+    this.loginService.logar(usuario);
 
     
     console.info('dado de login -> ' + usuario.login);

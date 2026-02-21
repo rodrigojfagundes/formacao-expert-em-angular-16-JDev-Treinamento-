@@ -12,11 +12,13 @@ import { Usuario } from '../model/usuario';
 })
 export class LoginService {
   
-  private urlApi = environment.urlApi + 'login';
+  private urlApi = environment.urlApiLocal + 'login';
 
   
   constructor(private http: HttpClient) {}
 
+  
+  
   
   logar(usuario: Usuario) {
     
@@ -25,6 +27,19 @@ export class LoginService {
     
     
     
-    return this.http.post<String>(this.urlApi, usuario);
+    this.http.post<String>(this.urlApi, usuario).subscribe({
+      
+      next: (res) => {
+        console.info('------------------jwt--------------');
+        console.info(res);
+        console.info('------------------jwt--------------');
+        alert('Login realizado');
+      },
+
+      error: (error) => {
+        console.info(error);
+        alert('Deu erro');
+      },
+    });
   }
 }
