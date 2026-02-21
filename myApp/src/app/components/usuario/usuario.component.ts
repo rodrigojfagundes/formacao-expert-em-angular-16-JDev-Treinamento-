@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { Usuario } from 'src/app/model/usuario';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserPessoa } from 'src/app/model/user-pessoa';
 import { EnderecoService } from 'src/app/services/endereco.service';
 import { LoginService } from 'src/app/services/login.service';
 import { PessoaFisicaService } from 'src/app/services/pessoaFisica.service';
@@ -12,16 +12,20 @@ import { UsuarioService } from 'src/app/services/usuario.service';
   styleUrls: ['./usuario.component.css'],
 })
 export class UsuarioComponent implements OnInit {
-  lista = new Array<Usuario>();
+  lista = new Array<UserPessoa>();
   userProdForm: FormGroup;
+  user: UserPessoa;
 
   constructor(
     private fb: FormBuilder,
     private loginService: LoginService,
     private usuarioService: UsuarioService
   ) {
+    this.user = new UserPessoa();
     this.userProdForm = this.fb.group({
       id: [],
+      login: [[null, Validators.required]],
+      senha: [[null, Validators.required]],
     });
   }
 
@@ -33,7 +37,7 @@ export class UsuarioComponent implements OnInit {
     this.usuarioService.listUserByEmpresa().subscribe({
       next: (res) => {
         this.lista = res;
-        console.info(this.lista);
+        
       },
       error: (error) => {
         alert(error);
@@ -44,10 +48,12 @@ export class UsuarioComponent implements OnInit {
   novo(): void {
     this.userProdForm = this.fb.group({
       id: [],
+      login: [[null, Validators.required]],
+      senha: [[null, Validators.required]],
     });
   }
 
-  userObjeto(): Usuario {
+  userObjeto(): UserPessoa {
     return {
       id: this.userProdForm.get('id')?.value!,
       login: this.userProdForm.get('login')?.value!,
@@ -55,9 +61,19 @@ export class UsuarioComponent implements OnInit {
     };
   }
 
-  editarUser(u: Usuario): void {
-    this.userProdForm = this.fb.group({
-      id: [this.pj.id],
+  editarUser(id: any): void {
+    this.usuarioService.buscarPorId(id).subscribe({
+      next: (data) => {
+        this.user = data;
+        this.userProdForm = this.fb.group({
+          id: [this.user.id],
+          login: [this.user.login],
+          senha: [this.user.senha],
+        });
+      },
+      error: (error) => {
+        alert(error);
+      },
     });
   }
 }

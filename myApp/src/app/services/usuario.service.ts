@@ -22,4 +22,9 @@ export class UsuarioService {
       this.urlApi + 'listUserByEmpresa/' + this.loginService.codEmpresa()
     );
   }
+
+  
+  buscarPorId(id: any) {
+    return this.http.get<Usuario>(this.urlApi + 'userById/' + id);
+  }
 }

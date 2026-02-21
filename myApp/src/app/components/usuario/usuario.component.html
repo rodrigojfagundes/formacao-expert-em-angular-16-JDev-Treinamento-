@@ -36,7 +36,9 @@
       <td>{{ c.id }}</td>
       <td>{{ c.login }}</td>
 
-      <button type="button" class="btn btn-primary">Ver</button>
+      <button type="button" class="btn btn-primary" (click)="editarUser(c.id)">
+        Ver
+      </button>
 
       <td>
         <button type="button" class="btn btn-danger">Deletar</button>
