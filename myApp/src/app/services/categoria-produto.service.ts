@@ -28,7 +28,17 @@ export class CategoriaProdutoService {
             '---------------------------------retorno do salvar------------------------------'
           );
           console.info(res);
-          alert('Salvo com sucesso');
+
+          
+          var varResposta = JSON.stringify(res);
+          var jsonResposta = JSON.parse(varResposta);
+
+          
+          if (jsonResposta.error != undefined) {
+            alert(jsonResposta.erro);
+          } else {
+            alert('Salvo com sucesso: ID: ' + jsonResposta.id);
+          }
         },
         error: (error) => {
           console.info(error.error.error);
