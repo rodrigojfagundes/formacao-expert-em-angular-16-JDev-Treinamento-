@@ -1,3 +1,4 @@
+import { Acesso } from './acesso';
 import { Pessoa } from './pessoa';
 
 export class UserPessoa {
@@ -5,4 +6,5 @@ export class UserPessoa {
   login?: String;
   senha?: String;
   pessoa?: Pessoa;
+  acessos?: Acesso[];
 }

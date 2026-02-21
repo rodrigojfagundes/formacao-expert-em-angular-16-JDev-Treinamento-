@@ -73,6 +73,10 @@ export class UsuarioComponent implements OnInit {
     this.usuarioService.buscarPorId(id).subscribe({
       next: (data) => {
         this.user = data;
+
+        console.info('user -------');
+        console.info(this.user.acessos);
+
         this.userProdForm = this.fb.group({
           id: [this.user.id],
           login: [this.user.login],
@@ -82,6 +86,21 @@ export class UsuarioComponent implements OnInit {
         this.acessoService.listarAcessoTodos().subscribe({
           next: (data) => {
             this.acesso = data;
+
+            
+            
+            
+            this.acesso.forEach((ab) => {
+              
+              this.user.acessos?.forEach((au) => {
+                
+                
+                if (ab.id == au.id) {
+                  ab.possuiAcesso = true;
+                }
+              });
+            });
+
             console.info('-----------acesso------------');
             console.info(this.acesso);
           },
