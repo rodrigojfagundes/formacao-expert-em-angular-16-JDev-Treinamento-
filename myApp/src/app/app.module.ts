@@ -20,6 +20,7 @@ import { CategoriaProdutoComponent } from './components/categoria-produto/catego
 import { MarcaProdutoComponent } from './components/marca-produto/marca-produto.component';
 import { Acesso } from './model/acesso';
 import { AcessoComponent } from './components/acesso/acesso.component';
+import { PessoaJuridicaComponent } from './components/pessoa-juridica/pessoa-juridica.component';
 
 
 export const appRoutes: Routes = [
@@ -60,6 +61,12 @@ export const appRoutes: Routes = [
     canActivate: [guardiaoGuard],
     data: { role: ['ROLE_ADMIN', 'ROLE_USER', 'ROLE_FUNCIONARIO'] },
   },
+  {
+    path: 'pessoa-juridica',
+    component: PessoaJuridicaComponent,
+    canActivate: [guardiaoGuard],
+    data: { role: ['ROLE_ADMIN', 'ROLE_USER', 'ROLE_FUNCIONARIO'] },
+  },
 ];
 
 export const routes = RouterModule.forRoot(appRoutes);
@@ -73,6 +80,7 @@ export const routes = RouterModule.forRoot(appRoutes);
     CategoriaProdutoComponent,
     MarcaProdutoComponent,
     AcessoComponent,
+    PessoaJuridicaComponent,
   ],
   imports: [
     BrowserModule,
