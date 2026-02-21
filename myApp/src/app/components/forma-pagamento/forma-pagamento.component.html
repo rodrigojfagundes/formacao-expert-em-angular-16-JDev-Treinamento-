@@ -1,1 +1,89 @@
-<p>forma-pagamento works! Teste</p>
+<p style="text-align: center; font-weight: bold; font-size: 15px">
+  Cadastro de categoria de produto
+</p>
+
+<form class="row g-3" [formGroup]="FormPagProdForm">
+  <input type="hidden" id="empresa" name="empresa" formControlName="empresa" />
+
+  <div class="col-2">
+    <label for="id" class="form-label">ID:</label>
+    <input
+      type="text"
+      class="form-control"
+      id="id"
+      readonly
+      name="id"
+      placeholder="ID"
+      formControlName="id"
+    />
+  </div>
+  <div class="col-10">
+    <label for="descricao" class="form-label">Descricao</label>
+    <input
+      type="text"
+      maxlength="100"
+      class="form-control"
+      id="descricao"
+      name="descricao"
+      required="true"
+      placeholder="Nome da forma de pagamento"
+      formControlName="descricao"
+    />
+    <div
+      *ngIf="FormPagProdForm.get('descricao')?.errors"
+      style="font-size: 8px; color: brown"
+    >
+      *Nome da forma de pagamento
+    </div>
+  </div>
+
+  <div class="col-12">
+    <button
+      type="submit"
+      class="btn btn-primary"
+      (click)="cadProdCategoria()"
+      [disabled]="!FormPagProdForm.valid"
+    >
+      Salvar
+    </button>
+    <button
+      type="submit"
+      class="btn btn-primary"
+      style="margin-left: 10px"
+      (click)="novo()"
+      [disabled]="!FormPagProdForm.valid"
+    >
+      Novo
+    </button>
+  </div>
+</form>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Nome></th>
+      <th scope="col">Editar</th>
+      <th scope="col">Deletar</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr *ngFor="let c of lista">
+      <td>{{ c.id }}</td>
+      <td>{{ c.descricao }}</td>
+      
+      <td>
+        <button type="button" class="btn btn-primary" (click)="editarCp(c)">
+          Editar
+        </button>
+      </td>
+      <td>
+        <button type="button" class="btn btn-danger" (click)="deletar(c)">
+          Deletar
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
