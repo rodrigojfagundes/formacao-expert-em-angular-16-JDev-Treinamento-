@@ -19,6 +19,8 @@ export class InterceptorProjetoInterceptor implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
+    console.info('Interceptor sendo chamado');
+
     return next.handle(request);
   }
 }

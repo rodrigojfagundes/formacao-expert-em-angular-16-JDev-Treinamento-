@@ -9,7 +9,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 
 
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { InterceptorProjetoInterceptor } from './interceptor/interceptor-projeto.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,7 +20,16 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  
+  
+  
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorProjetoInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
