@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Endereco } from 'src/app/model/endereco';
 import { PessoaJuridica } from 'src/app/model/pessoa-juridica';
+import { EnderecoService } from 'src/app/services/endereco.service';
 import { LoginService } from 'src/app/services/login.service';
 import { PessoaJuridicaService } from 'src/app/services/pessoaJuridica.service';
 
@@ -24,7 +25,8 @@ export class PessoaJuridicaComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private pjService: PessoaJuridicaService,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private enderecoService: EnderecoService
   ) {
     this.pj = new PessoaJuridica();
 
@@ -173,9 +175,19 @@ export class PessoaJuridicaComponent implements OnInit {
   addEndereco() {
     const end = this.endObjt();
 
-    var index = this.enderecos.map((e) => e.cep).indexOf(end.cep);
+    if (end.id != null && end.id != undefined) {
+      for (var i = 0; i < this.enderecos.length; i++) {
+        var e = this.enderecos[i];
+        if (e.cep === end.cep && e.id != end.id) {
+          return;
+        }
+      }
+    }
 
-    if (index < 0) {
+    var index = this.enderecos.map((e) => e.cep).indexOf(end.cep);
+    var indexId = this.enderecos.map((e) => e.id).indexOf(end.id);
+
+    if (index < 0 && indexId < 0) {
       this.enderecos.push(end);
     } else {
       this.enderecos.splice(index, 1);
@@ -186,21 +198,40 @@ export class PessoaJuridicaComponent implements OnInit {
   }
 
   removeEndereco(end: Endereco): void {
-    var index = this.enderecos.map((e) => e.cep).indexOf(end.cep);
-    this.enderecos.splice(index, 1);
+    var confirma = confirm('Deseja mesmo deletar o endereço?');
 
-    console.info(this.enderecos);
+    if (confirma) {
+      this.enderecoService.deletar(end);
+
+      var index = this.enderecos.map((e) => e.cep).indexOf(end.cep);
+      this.enderecos.splice(index, 1);
+
+      console.info(this.enderecos);
+    }
+  }
+
+  novoEndereco(): void {
+    this.endFormGroup = this.fb.group({
+      id: ['', !Validators.required],
+      ruaLogra: [null, Validators.required],
+      cep: [null, Validators.required],
+      numero: [null, Validators.required],
+      complemento: [null, Validators.required],
+      bairro: [null, Validators.required],
+      uf: [null, Validators.required],
+      cidade: [null, Validators.required],
+      estado: [null, Validators.required],
+      tipoEndereco: ['', Validators.required],
+    });
   }
 
   
   salvaPj() {
     const pj = this.pjObjeto();
 
-    console.info(pj);
+    this.pjService.salvarpj2(pj, this);
 
-    this.pjService.salvarpj(pj);
-
-    this.novo();
+    
     this.listaPj(this.paginaAtual);
   }
 

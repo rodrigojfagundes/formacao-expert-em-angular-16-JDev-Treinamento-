@@ -405,6 +405,15 @@
       >
         Adicionar endereço
       </button>
+      <button
+        type="submit"
+        style="margin-left: 10px"
+        class="btn btn-primary"
+        (click)="novoEndereco()"
+        [disabled]="!endFormGroup.valid"
+      >
+        Novo
+      </button>
     </div>
   </form>
 
@@ -413,6 +422,7 @@
       <tr>
         <th scope="col">ID</th>
         <th scope="col">Endereco</th>
+        <th scope="col">Cep</th>
         <th scope="col">Ver</th>
 
         <th scope="col">Deletar</th>
@@ -423,6 +433,7 @@
       <tr *ngFor="let c of enderecos">
         <td>{{ c.id }}</td>
         <td>{{ c.ruaLogra }}</td>
+        <td>{{ c.cep }}</td>
         <td>
           <button type="button" class="btn btn-primary" (click)="verEnd(c)">
             Ver
