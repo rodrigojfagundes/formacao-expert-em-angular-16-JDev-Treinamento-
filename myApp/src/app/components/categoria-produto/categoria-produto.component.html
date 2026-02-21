@@ -19,6 +19,7 @@
     <label for="nomeDesc" class="form-label">Nome da categoria</label>
     <input
       type="text"
+      maxlength="100"
       class="form-control"
       id="nomeDesc"
       name="nomeDesc"
@@ -26,10 +27,21 @@
       placeholder="Nome da categoria"
       formControlName="nomeDesc"
     />
+    <div
+      *ngIf="catProdForm.get('nomeDesc')?.errors"
+      style="font-size: 8px; color: brown"
+    >
+      *Nome da Categoria
+    </div>
   </div>
 
   <div class="col-12">
-    <button type="submit" class="btn btn-primary" (click)="cadProdCategoria()">
+    <button
+      type="submit"
+      class="btn btn-primary"
+      (click)="cadProdCategoria()"
+      [disabled]="!catProdForm.valid"
+    >
       Salvar
     </button>
   </div>
