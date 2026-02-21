@@ -27,6 +27,7 @@ import {
   provideEnvironmentNgxMask,
   provideNgxMask,
 } from 'ngx-mask';
+import { PessoaFisicaComponent } from './components/pessoa-fisica/pessoa-fisica.component';
 
 
 export const appRoutes: Routes = [
@@ -73,6 +74,12 @@ export const appRoutes: Routes = [
     canActivate: [guardiaoGuard],
     data: { role: ['ROLE_ADMIN', 'ROLE_USER', 'ROLE_FUNCIONARIO'] },
   },
+  {
+    path: 'pessoa-fisica',
+    component: PessoaFisicaComponent,
+    canActivate: [guardiaoGuard],
+    data: { role: ['ROLE_ADMIN', 'ROLE_USER', 'ROLE_FUNCIONARIO'] },
+  },
 ];
 
 export const routes = RouterModule.forRoot(appRoutes);
@@ -87,6 +94,7 @@ export const routes = RouterModule.forRoot(appRoutes);
     MarcaProdutoComponent,
     AcessoComponent,
     PessoaJuridicaComponent,
+    PessoaFisicaComponent,
   ],
   imports: [
     BrowserModule,
