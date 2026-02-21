@@ -142,7 +142,13 @@
       </button>
 
       <td>
-        <button type="button" class="btn btn-danger">Deletar</button>
+        <button
+          type="button"
+          class="btn btn-danger"
+          (click)="removerUserPessoa(c.id)"
+        >
+          Deletar
+        </button>
       </td>
     </tr>
   </tbody>

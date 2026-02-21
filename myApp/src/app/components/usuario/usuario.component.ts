@@ -123,4 +123,21 @@ export class UsuarioComponent implements OnInit {
 
     this.usuarioService.adicionaRemoveAcesso(ac.id, this.user.id);
   }
+
+  removerUserPessoa(idUser: any) {
+    if (!confirm('deseja mesmo deletar?')) {
+      return false;
+    }
+    
+    var idUserLogado = localStorage.getItem('idUser');
+
+    
+    if (idUserLogado == idUser) {
+      alert('Você não pode deletar o seu própio registro');
+      return false;
+    }
+    this.usuarioService.removerUserPessoa(idUser);
+    this.listUser();
+    return true;
+  }
 }

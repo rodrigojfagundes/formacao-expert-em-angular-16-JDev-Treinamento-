@@ -69,4 +69,24 @@ export class UsuarioService {
         },
       });
   }
+
+  removerUserPessoa(idUser: any): void {
+    this.http
+      .post<String>(this.urlApi + 'removerUserPessoa', idUser)
+      .subscribe({
+        next: (res) => {
+          var varResposta = JSON.stringify(res);
+          var jsonResposta = JSON.parse(varResposta);
+
+          if (jsonResposta.error != undefined) {
+            alert(jsonResposta.error);
+          } else {
+            alert(varResposta);
+          }
+        },
+        error: (error) => {
+          alert(error.error.error);
+        },
+      });
+  }
 }
