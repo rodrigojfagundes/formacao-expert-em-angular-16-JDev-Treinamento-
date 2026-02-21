@@ -46,4 +46,13 @@ export class CategoriaProdutoService {
         },
       });
   }
+
+  
+  
+  
+  listarCategoriaProduto() {
+    return this.http.get<CategoriaProduto[]>(
+      this.urlApi + 'listarCategoriaProduto'
+    );
+  }
 }

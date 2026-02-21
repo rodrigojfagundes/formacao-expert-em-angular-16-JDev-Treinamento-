@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { CategoriaProduto } from 'src/app/model/categoria-produto';
 import { CategoriaProdutoService } from 'src/app/services/categoria-produto.service';
@@ -11,7 +11,10 @@ import { LoginService } from 'src/app/services/login.service';
 })
 
 
-export class CategoriaProdutoComponent {
+
+
+
+export class CategoriaProdutoComponent implements OnInit {
   
   
   
@@ -22,6 +25,37 @@ export class CategoriaProdutoComponent {
     private categoriaProdutoService: CategoriaProdutoService,
     private loginService: LoginService
   ) {}
+
+  
+  lista = new Array<CategoriaProduto>();
+
+  
+  
+  
+  
+  ngOnInit(): void {
+    
+    this.listaCategorias();
+  }
+
+  
+  
+  listaCategorias() {
+    
+    
+    
+    this.categoriaProdutoService.listarCategoriaProduto().subscribe({
+      
+      
+      next: (res) => {
+        this.lista = res;
+      },
+      error: (error) => {
+        
+        alert(error);
+      },
+    });
+  }
 
   /*pegar dados do formulario q ta no categoria-produto.component.html e verificando
   se o nomedesc nao ta null...
@@ -58,7 +92,7 @@ export class CategoriaProdutoComponent {
   
   
   
-  cadProdCategoria() {
+  cadProdCategoria(): void {
     const categoria = this.catProdObjeto();
     console.info(categoria);
 
@@ -66,5 +100,7 @@ export class CategoriaProdutoComponent {
     
     
     this.categoriaProdutoService.salvarCategoriaProduto(categoria);
+
+    this.listaCategorias();
   }
 }

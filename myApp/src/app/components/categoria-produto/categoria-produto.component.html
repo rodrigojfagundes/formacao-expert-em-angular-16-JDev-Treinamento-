@@ -48,3 +48,20 @@
     </button>
   </div>
 </form>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Nome></th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr *ngFor="let c of lista">
+      <td>{{ c.id }}</td>
+      <td>{{ c.nomeDesc }}</td>
+    </tr>
+  </tbody>
+</table>
