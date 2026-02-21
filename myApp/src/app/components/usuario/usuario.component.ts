@@ -79,4 +79,9 @@ export class UsuarioComponent implements OnInit {
       },
     });
   }
+
+  salvarUser(): void {
+    this.user = this.userObjeto();
+    this.usuarioService.salvarUserPessoa(this.user);
+  }
 }

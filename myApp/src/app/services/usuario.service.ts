@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { LoginService } from './login.service';
 import { Usuario } from '../model/usuario';
+import { UserPessoa } from '../model/user-pessoa';
 
 @Injectable({
   providedIn: 'root',
@@ -26,5 +27,16 @@ export class UsuarioService {
   
   buscarPorId(id: any) {
     return this.http.get<Usuario>(this.urlApi + 'userById/' + id);
+  }
+
+  salvarUserPessoa(u: UserPessoa) {
+    return this.http
+      .post<String>(this.urlApi + 'updateUserPessoa', u)
+      .subscribe({
+        next: (res) => {},
+        error: (error) => {
+          alert(error.error.error);
+        },
+      });
   }
 }

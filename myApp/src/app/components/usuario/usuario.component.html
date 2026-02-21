@@ -75,6 +75,26 @@
       * Senha
     </div>
   </div>
+
+  <div class="col-12">
+    <button
+      type="submit"
+      class="btn btn-primary"
+      (click)="salvarUser()"
+      [disabled]="!userProdForm.valid"
+    >
+      Salvar
+    </button>
+    <button
+      type="submit"
+      style="margin-left: 10px"
+      class="btn btn-primary"
+      (click)="novo()"
+      [disabled]="!userProdForm.valid"
+    >
+      Novo
+    </button>
+  </div>
 </form>
 
 <table class="table">
