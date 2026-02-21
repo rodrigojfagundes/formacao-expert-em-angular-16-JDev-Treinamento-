@@ -25,8 +25,9 @@ export class LoginService {
     
     var autorization = '' + localStorage.getItem('Authorization');
     
-    return;
-    autorization !== '' && autorization !== null && autorization !== 'null';
+    return (
+      autorization !== '' && autorization !== null && autorization !== 'null'
+    );
   }
 
   
