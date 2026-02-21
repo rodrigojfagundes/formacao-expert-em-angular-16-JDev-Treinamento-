@@ -21,6 +21,7 @@ export class CategoriaProdutoComponent implements OnInit {
   catProdForm: FormGroup;
   
   catproduto: CategoriaProduto;
+  varPesquisa: String = '';
 
   
   
@@ -170,5 +171,35 @@ export class CategoriaProdutoComponent implements OnInit {
       
       this.listaCategorias();
     }
+  }
+
+  
+  
+  setPesquisa(val: String): void {
+    this.varPesquisa = val;
+  }
+
+  
+  pesquisar(): void {
+    
+    if (this.varPesquisa.length <= 0) {
+      this.listaCategorias();
+      return;
+    }
+    
+    this.categoriaProdutoService
+      .buscarPorDescCatgoria(this.varPesquisa)
+      .subscribe({
+        next: (res) => {
+          
+          
+          this.lista = res;
+        },
+        error: (error) => {
+          
+          
+          alert(error);
+        },
+      });
   }
 }

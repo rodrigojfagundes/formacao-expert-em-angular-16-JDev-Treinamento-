@@ -98,4 +98,18 @@ export class CategoriaProdutoService {
   buscarPorId(id: any) {
     return this.http.get<CategoriaProduto>(this.urlApi + 'buscarPorId/' + id);
   }
+
+  
+  
+  
+  
+  buscarPorDescCatgoria(val: String) {
+    return this.http.get<CategoriaProduto[]>(
+      this.urlApi +
+        'buscarPorDescCatgoria/' +
+        val +
+        '/' +
+        this.loginService.codEmpresa()
+    );
+  }
 }
