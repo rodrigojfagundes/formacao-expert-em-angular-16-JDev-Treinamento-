@@ -38,6 +38,12 @@ export class AppComponent implements OnInit {
 
   
   
+  usuarioLogado() {
+    return this.loginService.usuarioLogado();
+  }
+
+  
+  
   
   ngOnInit(): void {
     if (this.loginService.usuarioLogado()) {
