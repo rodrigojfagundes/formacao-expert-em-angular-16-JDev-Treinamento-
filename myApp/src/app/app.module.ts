@@ -18,6 +18,8 @@ import { guardiaoGuard } from './guard/guardiao.guard';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CategoriaProdutoComponent } from './components/categoria-produto/categoria-produto.component';
 import { MarcaProdutoComponent } from './components/marca-produto/marca-produto.component';
+import { Acesso } from './model/acesso';
+import { AcessoComponent } from './components/acesso/acesso.component';
 
 
 export const appRoutes: Routes = [
@@ -51,6 +53,13 @@ export const appRoutes: Routes = [
     canActivate: [guardiaoGuard],
     data: { role: ['ROLE_ADMIN', 'ROLE_USER', 'ROLE_FUNCIONARIO'] },
   },
+
+  {
+    path: 'acesso',
+    component: AcessoComponent,
+    canActivate: [guardiaoGuard],
+    data: { role: ['ROLE_ADMIN', 'ROLE_USER', 'ROLE_FUNCIONARIO'] },
+  },
 ];
 
 export const routes = RouterModule.forRoot(appRoutes);
@@ -63,6 +72,7 @@ export const routes = RouterModule.forRoot(appRoutes);
     NavbarComponent,
     CategoriaProdutoComponent,
     MarcaProdutoComponent,
+    AcessoComponent,
   ],
   imports: [
     BrowserModule,
