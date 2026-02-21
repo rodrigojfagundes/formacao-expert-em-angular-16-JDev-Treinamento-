@@ -1,8 +1,0 @@
-a pasta services tem função semelhante a pasta services do java... Tipo para armazenar
-os services. tipo... PessoaService.ts... CarroService.ts.... EmpresaService.ts... etc... :D
-
-o professor disse na aula 2.9 AULA - Estrutura de pacotes q os pacotes q estão na
-pasta services vão chamar os ENDPOINTS q ESTAO NO BACKEND EM JAVA + SPRING...
-
-ou seja os services vao chamar os CONTROLLERS tipo PessoaService.ts vai chamar 
-os metodos q estao no PessoaController.java 
