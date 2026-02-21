@@ -42,4 +42,13 @@ export class FormaPagamentoComponent implements OnInit {
       },
     });
   }
+
+  deletar(c: FormaPagamento): void {
+    var confirmar = confirm('Desejar mesmo deletar?');
+
+    if (confirmar) {
+      this.formaPagamentoService.deletar(c);
+      this.listaFormaPagamento();
+    }
+  }
 }
