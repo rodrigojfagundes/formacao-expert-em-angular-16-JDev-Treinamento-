@@ -1,4 +1,23 @@
-<p>usuario works!</p>
+<p style="text-align: center; font-weight: bold; font-size: 15px">
+  Cadastro de Usuario
+</p>
+
+<form class="row g-3" [formGroup]="userProdForm">
+  <input type="hidden" id="empresa" name="empresa" formControlName="empresa" />
+
+  <div class="col-2">
+    <label for="id" class="form-label">ID:</label>
+    <input
+      type="text"
+      class="form-control"
+      id="id"
+      readonly
+      name="id"
+      formControlName="id"
+      (ngModel)="userProdForm.get('id')"
+    />
+  </div>
+</form>
 
 <table class="table">
   <thead>
