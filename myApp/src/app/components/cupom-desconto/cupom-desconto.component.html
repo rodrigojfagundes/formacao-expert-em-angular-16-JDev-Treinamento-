@@ -17,7 +17,7 @@
       formControlName="id"
     />
   </div>
-  <div class="col-10">
+  <div class="col-5">
     <label for="codDesc" class="form-label">Nome do Cupom Desconto</label>
     <input
       type="text"
@@ -34,6 +34,72 @@
       style="font-size: 8px; color: brown"
     >
       *Nome da forma de pagamento
+    </div>
+  </div>
+
+  <div class="col-5">
+    <label for="dataValidadeCupom" class="form-label"
+      >Data Validade Cupom Desconto</label
+    >
+    <input
+      type="text"
+      maxlength="100"
+      class="form-control"
+      id="dataValidadeCupom"
+      name="dataValidadeCupom"
+      required="true"
+      placeholder="Nome da forma de pagamento"
+      formControlName="dataValidadeCupom"
+      mask="00/00/0000"
+      [dropSpecialCharacters]="false"
+    />
+    <div
+      *ngIf="cupDescProdForm.get('dataValidadeCupom')?.errors"
+      style="font-size: 8px; color: brown"
+    >
+      *Nome da forma de pagamento
+    </div>
+  </div>
+
+  <div class="col-5">
+    <label for="valorRealDesc" class="form-label">Valor Real do Desconto</label>
+    <input
+      type="text"
+      maxlength="100"
+      class="form-control"
+      id="valorRealDesc"
+      name="valorRealDesc"
+      required="true"
+      placeholder="Valor real do desconto cupom desconto"
+      formControlName="valorRealDesc"
+    />
+    <div
+      *ngIf="cupDescProdForm.get('valorRealDesc')?.errors"
+      style="font-size: 8px; color: brown"
+    >
+      *Nome da forma de pagamento
+    </div>
+  </div>
+
+  <div class="col-5">
+    <label for="valorPorcentDesc" class="form-label"
+      >Valor Porcentagem do Desconto</label
+    >
+    <input
+      type="text"
+      maxlength="100"
+      class="form-control"
+      id="valorPorcentDesc"
+      name="valorPorcentDesc"
+      required="true"
+      placeholder="Valor porcentagem do desconto cupom desconto"
+      formControlName="valorPorcentDesc"
+    />
+    <div
+      *ngIf="cupDescProdForm.get('valorPorcentDesc')?.errors"
+      style="font-size: 8px; color: brown"
+    >
+      *valor porcentagem de desconto
     </div>
   </div>
 
