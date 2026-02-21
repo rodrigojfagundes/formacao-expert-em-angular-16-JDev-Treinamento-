@@ -4,7 +4,7 @@ export class CupomDesconto {
   constructor() {}
 
   id?: Number;
-  descricao?: String;
+  codDesc?: String;
   DataValidadeCupom?: Date;
   valorRealDesc?: Number;
   valorPorcentDesc?: Number;
