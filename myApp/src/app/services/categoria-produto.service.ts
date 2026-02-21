@@ -1,9 +1,33 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
+import { CategoriaProduto } from '../model/categoria-produto';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CategoriaProdutoService {
+  
+  private urlApi = environment.urlApi;
 
-  constructor() { }
+  constructor(private http: HttpClient, private router: Router) {}
+
+  
+  
+  
+  salvarCategoriaProduto(categoriaProduto: CategoriaProduto) {
+    
+    
+    return this.http
+      .post<String>(this.urlApi + 'salvarCategoria', categoriaProduto)
+      .subscribe({
+        
+        next: (res) => {},
+        error: (error) => {
+          console.info(error);
+          alert('Deu erro: ' + error.error.text);
+        },
+      });
+  }
 }

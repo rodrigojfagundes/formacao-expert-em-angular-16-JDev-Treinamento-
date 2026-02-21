@@ -61,5 +61,10 @@ export class CategoriaProdutoComponent {
   cadProdCategoria() {
     const categoria = this.catProdObjeto();
     console.info(categoria);
+
+    
+    
+    
+    this.categoriaProdutoService.salvarCategoriaProduto(categoria);
   }
 }
