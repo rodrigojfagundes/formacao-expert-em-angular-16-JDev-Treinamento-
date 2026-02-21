@@ -20,6 +20,29 @@ export class LoginService {
   
   
   
+  
+  
+  
+  
+  
+  
+  recuperarSenha(login: String) {
+    return this.http
+      .post<String>(environment.urlApiLocal + 'recuperarSenha', login)
+      .subscribe({
+        next: (res) => {
+          alert(JSON.stringify(res));
+        },
+        error: (error) => {
+          console.info(error);
+          alert('Erro ao recuperar senha: ' + error);
+        },
+      });
+  }
+
+  
+  
+  
   logar(usuario: Usuario) {
     
     
