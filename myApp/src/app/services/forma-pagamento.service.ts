@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { LoginService } from './login.service';
+import { FormaPagamento } from '../model/forma-pagamento';
 
 @Injectable({
   providedIn: 'root',
@@ -15,4 +16,9 @@ export class FormaPagamentoService {
     private router: Router,
     private loginService: LoginService
   ) {}
+  listaFormaPagamento() {
+    return this.http.get<FormaPagamento[]>(
+      this.urlApi + 'listaFormaPagamento/' + this.loginService.codEmpresa()
+    );
+  }
 }

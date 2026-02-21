@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormaPagamento } from 'src/app/model/forma-pagamento';
+import { FormaPagamentoService } from 'src/app/services/forma-pagamento.service';
 import { LoginService } from 'src/app/services/login.service';
 
 @Component({
@@ -17,7 +18,8 @@ export class FormaPagamentoComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private loginService: LoginService,
-    private formaPagamento: FormaPagamento
+    private formaPagamento: FormaPagamento,
+    private formaPagamentoService: FormaPagamentoService
   ) {
     this.FormPagProdForm = this.fb.group({
       id: [],
@@ -26,5 +28,18 @@ export class FormaPagamentoComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.listaFormaPagamento();
+  }
+
+  listaFormaPagamento(): void {
+    this.formaPagamentoService.listaFormaPagamento().subscribe({
+      next: (res) => {
+        this.lista = res;
+      },
+      error: (error) => {
+        alert(error);
+      },
+    });
+  }
 }
