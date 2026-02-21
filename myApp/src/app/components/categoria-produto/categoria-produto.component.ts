@@ -52,6 +52,6 @@ export class CategoriaProdutoComponent {
   
   cadProdCategoria() {
     const categoria = this.catProdObjeto();
-    console.debug('---> ' + categoria);
+    console.info('---> ' + categoria);
   }
 }

@@ -94,8 +94,11 @@ export class LoginService {
         
         
         
+        
+        
         localStorage.setItem('Authorization', jwt.Authorization);
         localStorage.setItem('username', jwt.username);
+        localStorage.setItem('empresa', jwt.empresa);
         
         this.routers.navigate(['home']);
       },
