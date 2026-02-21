@@ -17,16 +17,52 @@
       (ngModel)="userProdForm.get('id')"
     />
   </div>
+
+  <div class="col-5">
+    <label for="login" class="form-label">Login</label>
+    <input
+      type="text"
+      maxlength="100"
+      class="form-control"
+      id="login"
+      name="login"
+      required
+      formControlName="login"
+    />
+    <div
+      *ngIf="userProdForm.get('login')?.errors"
+      style="font-size: 8px; color: brown"
+    >
+      * Login
+    </div>
+  </div>
+
+  <div class="col-5">
+    <label for="senha" class="form-label">Senha</label>
+    <input
+      type="password"
+      maxlength="100"
+      class="form-control"
+      id="senha"
+      name="senha"
+      required
+      formControlName="senha"
+    />
+    <div
+      *ngIf="userProdForm.get('senha')?.errors"
+      style="font-size: 8px; color: brown"
+    >
+      * Senha
+    </div>
+  </div>
 </form>
 
 <table class="table">
   <thead>
     <tr>
       <th scope="col">ID</th>
-      <th scope="col">Endereco</th>
-      <th scope="col">Cep</th>
-      <th scope="col">Ver</th>
-
+      <th scope="col">Nome</th>
+      <th scope="col">Editar</th>
       <th scope="col">Deletar</th>
     </tr>
   </thead>
