@@ -82,9 +82,13 @@ export class CategoriaProdutoService {
   
   
   
-  listarCategoriaProduto() {
+  listarCategoriaProduto(pagina: Number) {
     return this.http.get<CategoriaProduto[]>(
-      this.urlApi + 'listarCategoriaProduto/' + this.loginService.codEmpresa()
+      this.urlApi +
+        'listaPorPageCategoriaProduto/' +
+        this.loginService.codEmpresa() +
+        '/' +
+        pagina
     );
   }
 

@@ -25,6 +25,7 @@ export class CategoriaProdutoComponent implements OnInit {
   qtdPagina: Number = 0;
   
   arrayNumber: Number[] = [];
+  paginaAtual: Number = 1;
 
   
   
@@ -79,7 +80,7 @@ export class CategoriaProdutoComponent implements OnInit {
     });
 
     
-    this.listaCategorias();
+    this.listaCategorias(1);
   }
 
   
@@ -100,11 +101,13 @@ export class CategoriaProdutoComponent implements OnInit {
 
   
   
-  listaCategorias() {
+  
+  
+  listaCategorias(pagina: Number): void {
     
     
     
-    this.categoriaProdutoService.listarCategoriaProduto().subscribe({
+    this.categoriaProdutoService.listarCategoriaProduto(pagina).subscribe({
       
       
       next: (res) => {
@@ -148,7 +151,7 @@ export class CategoriaProdutoComponent implements OnInit {
     
     
     this.novo();
-    this.listaCategorias();
+    this.listaCategorias(this.paginaAtual);
   }
 
   
@@ -189,7 +192,7 @@ export class CategoriaProdutoComponent implements OnInit {
       this.categoriaProdutoService.deletar(c);
       
       
-      this.listaCategorias();
+      this.listaCategorias(this.paginaAtual);
     }
   }
 
@@ -203,7 +206,7 @@ export class CategoriaProdutoComponent implements OnInit {
   pesquisar(): void {
     
     if (this.varPesquisa.length <= 0) {
-      this.listaCategorias();
+      this.listaCategorias(this.paginaAtual);
       return;
     }
     
@@ -227,6 +230,23 @@ export class CategoriaProdutoComponent implements OnInit {
   
   
   buscarPagina(p: Number): void {
-    console.info('buscar page' + p);
+    
+    
+    this.paginaAtual = p;
+    this.listaCategorias(this.paginaAtual);
+  }
+
+  voltar(): void {
+    if (this.paginaAtual.valueOf() > 0) {
+      this.paginaAtual = this.paginaAtual.valueOf() - 1;
+    }
+    this.listaCategorias(this.paginaAtual);
+  }
+
+  avancar(): void {
+    if (this.paginaAtual.valueOf() < this.qtdPagina.valueOf()) {
+      this.paginaAtual = this.paginaAtual.valueOf() + 1;
+    }
+    this.listaCategorias(this.paginaAtual);
   }
 }
