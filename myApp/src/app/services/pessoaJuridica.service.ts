@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { LoginService } from './login.service';
 import { PessoaJuridica } from '../model/pessoa-juridica';
+import { PessoaJuridicaComponent } from '../components/pessoa-juridica/pessoa-juridica.component';
 
 @Injectable({
   providedIn: 'root',
