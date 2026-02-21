@@ -31,8 +31,14 @@ export class LoginService {
       
       next: (res) => {
         console.info('------------------jwt--------------');
-        console.info(res);
-        console.info('------------------jwt--------------');
+        
+        
+        var respJson = JSON.stringify(res);
+        
+        
+        var jwt = JSON.parse(respJson);
+        
+        localStorage.setItem('Authorization', jwt.Authorization);
       },
 
       error: (error) => {
