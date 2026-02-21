@@ -53,7 +53,7 @@ export class MarcaProdutoService {
   
   
   
-  salvarCategoriaProduto(m: MarcaProduto) {
+  salvarMarcaProduto(m: MarcaProduto) {
     
     
     return this.http.post<String>(this.urlApi + 'salvarMarca', m).subscribe({
@@ -126,7 +126,7 @@ export class MarcaProdutoService {
   
   
   
-  qtdePagina() {
+  qtdPagina() {
     return this.http.get<BigInteger>(
       this.urlApi + 'qtdPaginaMarcaProduto/' + this.loginService.codEmpresa()
     );

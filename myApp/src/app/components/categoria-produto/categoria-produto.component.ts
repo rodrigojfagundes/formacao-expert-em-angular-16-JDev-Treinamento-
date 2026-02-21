@@ -25,7 +25,7 @@ export class CategoriaProdutoComponent implements OnInit {
   qtdPagina: Number = 0;
   
   arrayNumber: Number[] = [];
-  paginaAtual: Number = 1;
+  paginaAtual: Number = 0;
 
   
   
@@ -80,7 +80,7 @@ export class CategoriaProdutoComponent implements OnInit {
     });
 
     
-    this.listaCategorias(1);
+    this.listaCategorias(0);
   }
 
   
