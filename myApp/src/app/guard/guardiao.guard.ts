@@ -4,8 +4,11 @@ import { LoginService } from '../services/login.service';
 
 
 
+
 export const guardiaoGuard: CanActivateFn = (route, state) => {
   
+
+  console.info(route.data);
 
   
   return inject(LoginService).usuarioLogado();
