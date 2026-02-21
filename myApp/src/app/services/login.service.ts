@@ -12,7 +12,7 @@ import { Usuario } from '../model/usuario';
 })
 export class LoginService {
   
-  private urlApi = environment.urlApi + 'login';
+  private urlApi = environment.urlApi;
 
   
   constructor(private http: HttpClient) {}
@@ -65,7 +65,7 @@ export class LoginService {
     
     
     
-    this.http.post<String>(this.urlApi, usuario).subscribe({
+    this.http.post<String>(this.urlApi + 'login', usuario).subscribe({
       
       next: (res) => {
         console.info('------------------jwt--------------');
