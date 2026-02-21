@@ -21,6 +21,12 @@ import { MarcaProdutoComponent } from './components/marca-produto/marca-produto.
 import { Acesso } from './model/acesso';
 import { AcessoComponent } from './components/acesso/acesso.component';
 import { PessoaJuridicaComponent } from './components/pessoa-juridica/pessoa-juridica.component';
+import {
+  NgxMaskDirective,
+  NgxMaskPipe,
+  provideEnvironmentNgxMask,
+  provideNgxMask,
+} from 'ngx-mask';
 
 
 export const appRoutes: Routes = [
@@ -87,6 +93,8 @@ export const routes = RouterModule.forRoot(appRoutes);
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgxMaskDirective,
+    NgxMaskPipe,
     routes,
   ],
   
@@ -98,6 +106,7 @@ export const routes = RouterModule.forRoot(appRoutes);
       useClass: InterceptorProjetoInterceptor,
       multi: true,
     },
+    provideNgxMask(),
   ],
   bootstrap: [AppComponent],
 })
