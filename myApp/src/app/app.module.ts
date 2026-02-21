@@ -17,6 +17,7 @@ import { LoginComponent } from './login/login/login.component';
 import { guardiaoGuard } from './guard/guardiao.guard';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CategoriaProdutoComponent } from './components/categoria-produto/categoria-produto.component';
+import { MarcaProdutoComponent } from './components/marca-produto/marca-produto.component';
 
 
 export const appRoutes: Routes = [
@@ -43,6 +44,13 @@ export const appRoutes: Routes = [
     canActivate: [guardiaoGuard],
     data: { role: ['ROLE_ADMIN', 'ROLE_USER', 'ROLE_FUNCIONARIO'] },
   },
+
+  {
+    path: 'marca-produto',
+    component: MarcaProdutoComponent,
+    canActivate: [guardiaoGuard],
+    data: { role: ['ROLE_ADMIN', 'ROLE_USER', 'ROLE_FUNCIONARIO'] },
+  },
 ];
 
 export const routes = RouterModule.forRoot(appRoutes);
@@ -54,6 +62,7 @@ export const routes = RouterModule.forRoot(appRoutes);
     LoginComponent,
     NavbarComponent,
     CategoriaProdutoComponent,
+    MarcaProdutoComponent,
   ],
   imports: [
     BrowserModule,
