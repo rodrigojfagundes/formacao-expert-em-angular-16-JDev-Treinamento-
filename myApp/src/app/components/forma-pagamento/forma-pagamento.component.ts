@@ -66,4 +66,12 @@ export class FormaPagamentoComponent implements OnInit {
       empresa: [c.empresa, Validators.required],
     });
   }
+
+  novo(): void {
+    this.FormPagProdForm = this.fb.group({
+      id: [],
+      descricao: [null, Validators.required],
+      empresa: [this.loginService.objetoEmpresa(), Validators.required],
+    });
+  }
 }
