@@ -12,7 +12,7 @@ import { Usuario } from '../model/usuario';
 })
 export class LoginService {
   
-  private urlApi = environment.urlApiLocal + 'login';
+  private urlApi = environment.urlApi + 'login';
 
   
   constructor(private http: HttpClient) {}
@@ -33,12 +33,14 @@ export class LoginService {
         console.info('------------------jwt--------------');
         console.info(res);
         console.info('------------------jwt--------------');
-        alert('Login realizado');
       },
 
       error: (error) => {
         console.info(error);
-        alert('Deu erro');
+        
+        
+        
+        alert('Deu erro ' + error.error.text);
       },
     });
   }
