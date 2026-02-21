@@ -1,1 +1,89 @@
-<p>cupom-desconto works!</p>
+<p style="text-align: center; font-weight: bold; font-size: 15px">
+  Cadastro de categoria de produto
+</p>
+
+<form class="row g-3" [formGroup]="cupDescProdForm">
+  <input type="hidden" id="empresa" name="empresa" formControlName="empresa" />
+
+  <div class="col-2">
+    <label for="id" class="form-label">ID:</label>
+    <input
+      type="text"
+      class="form-control"
+      id="id"
+      readonly
+      name="id"
+      placeholder="ID"
+      formControlName="id"
+    />
+  </div>
+  <div class="col-10">
+    <label for="codDesc" class="form-label">Nome do Cupom Desconto</label>
+    <input
+      type="text"
+      maxlength="100"
+      class="form-control"
+      id="codDesc"
+      name="codDesc"
+      required="true"
+      placeholder="Nome da forma de pagamento"
+      formControlName="codDesc"
+    />
+    <div
+      *ngIf="cupDescProdForm.get('CodDesc')?.errors"
+      style="font-size: 8px; color: brown"
+    >
+      *Nome da forma de pagamento
+    </div>
+  </div>
+
+  <div class="col-12">
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="!cupDescProdForm.valid"
+      (click)="salvarCd()"
+    >
+      Salvar
+    </button>
+    <button
+      type="submit"
+      class="btn btn-primary"
+      style="margin-left: 10px"
+      [disabled]="!cupDescProdForm.valid"
+      (click)="novo()"
+    >
+      Novo
+    </button>
+  </div>
+</form>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Nome></th>
+      <th scope="col">Editar</th>
+      <th scope="col">Deletar</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr *ngFor="let c of lista">
+      <td>{{ c.id }}</td>
+      <td>{{ c.codDesc }}</td>
+      
+      <td>
+        <button type="button" class="btn btn-primary" (click)="editarFp(c)">
+          Editar
+        </button>
+      </td>
+      <td>
+        <button type="button" class="btn btn-danger" (click)="deletar(c)">
+          Deletar
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
