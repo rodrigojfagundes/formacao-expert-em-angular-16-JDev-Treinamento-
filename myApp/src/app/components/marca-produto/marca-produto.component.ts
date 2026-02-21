@@ -1,75 +1,49 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CategoriaProduto } from 'src/app/model/categoria-produto';
-import { CategoriaProdutoService } from 'src/app/services/categoria-produto.service';
+import { Component, Input, OnInit } from '@angular/core';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import { MarcaProduto } from 'src/app/model/marca-produto';
 import { LoginService } from 'src/app/services/login.service';
+import { MarcaProdutoService } from 'src/app/services/marca-produto.service';
 
 @Component({
   selector: 'app-marca-produto',
   templateUrl: './marca-produto.component.html',
   styleUrls: ['./marca-produto.component.css'],
 })
-
-
-
-
-
 export class MarcaProdutoComponent implements OnInit {
-  
-  lista = new Array<CategoriaProduto>();
-  
-  catProdForm: FormGroup;
-  
-  catproduto: CategoriaProduto;
+  lista = new Array<MarcaProduto>();
+  marcaProdForm: FormGroup;
+  marcaproduto: MarcaProduto;
   varPesquisa: String = '';
   qtdPagina: Number = 0;
-  
   arrayNumber: Number[] = [];
-  paginaAtual: Number = 1;
+  paginaAtual: Number = 0;
 
-  
-  
-  
-  
-  
   constructor(
     private fb: FormBuilder,
-    private categoriaProdutoService: CategoriaProdutoService,
+    private marcaProdutoService: MarcaProdutoService,
     private loginService: LoginService
   ) {
-    
-    
-    this.catproduto = new CategoriaProduto();
+    this.marcaproduto = new MarcaProduto();
 
-    /*pegar dados inicia e limpa o formulario q ta no categoria-produto.component.html e verificando
-  se o nomedesc nao ta null...
-  basicamente estamos instanciando um obj/var do tipo FB(FORMBUILDER) de nome CATPRODFORM
-  q vai receber o metodo GROUP q e esse metodo nos vamos informar as VAR/OBJ do CATEGORIA-PRODUTO.TS
-  e as validacoes.. tipo o nomedesc nao pd ser null
-  */
-    this.catProdForm = this.fb.group({
+    
+    this.marcaProdForm = this.fb.group({
       id: [],
       nomeDesc: [null, Validators.required],
-      
-      
-      
       empresa: [this.loginService.objetoEmpresa(), Validators.required],
     });
   }
 
   
-  
-  
-  
   ngOnInit(): void {
-    
-    
-    this.categoriaProdutoService.qtdePagina().subscribe({
+    this.marcaProdutoService.qtdPagina().subscribe({
       next: (res) => {
         this.qtdPagina = Number(res);
-        
-        
-        
+
         this.arrayNumber = Array(this.qtdPagina)
           .fill(0)
           .map((x, i) => i);
@@ -79,101 +53,71 @@ export class MarcaProdutoComponent implements OnInit {
       error: (error) => {},
     });
 
-    
-    this.listaCategorias(1);
+    this.listaMarcas(0);
   }
 
-  
-  
-  
-  
-  
+  atualizaQtdPagina(): void {
+    this.marcaProdutoService.qtdPagina().subscribe({
+      next: (res) => {
+        this.qtdPagina = Number(res);
+
+        this.arrayNumber = Array(this.qtdPagina)
+          .fill(0)
+          .map((x, i) => i);
+
+        console.info(this.arrayNumber);
+      },
+      error: (error) => {},
+    });
+  }
+
   novo(): void {
-    this.catProdForm = this.fb.group({
+    this.marcaProdForm = this.fb.group({
       id: [],
       nomeDesc: [null, Validators.required],
-      
-      
-      
       empresa: [this.loginService.objetoEmpresa(), Validators.required],
     });
   }
 
-  
-  
-  
-  
-  listaCategorias(pagina: Number): void {
-    
-    
-    
-    this.categoriaProdutoService.listarCategoriaProduto(pagina).subscribe({
-      
-      
+  listaMarcas(pagina: Number): void {
+    this.marcaProdutoService.listarMarcaProduto(pagina).subscribe({
       next: (res) => {
+        this.atualizaQtdPagina();
         this.lista = res;
       },
       error: (error) => {
-        
         alert(error);
       },
     });
   }
 
   
-  
-  
-  
-  
-  
-  
-  catProdObjeto(): CategoriaProduto {
+  marcaProdObjeto(): MarcaProduto {
     return {
-      id: this.catProdForm.get('id')?.value!,
-      nomeDesc: this.catProdForm.get('nomeDesc')?.value!,
-      empresa: this.catProdForm.get('empresa')?.value!,
+      id: this.marcaProdForm.get('id')?.value!,
+      nomeDesc: this.marcaProdForm.get('nomeDesc')?.value!,
+      empresa: this.marcaProdForm.get('empresa')?.value!,
     };
   }
 
   
-  
-  
-  
-  
-  cadProdCategoria(): void {
-    const categoria = this.catProdObjeto();
-    console.info(categoria);
+  salvaProdMarca() {
+    const marca = this.marcaProdObjeto();
+    this.marcaProdutoService.salvarMarcaProduto(marca);
 
-    
-    
-    
-    this.categoriaProdutoService.salvarCategoriaProduto(categoria);
-    
-    
     this.novo();
-    this.listaCategorias(this.paginaAtual);
+    this.listaMarcas(this.paginaAtual);
   }
 
-  
-  
-  
-  
-  editarCp(c: CategoriaProduto): void {
-    
-    
-    
-    
-    
-    
-    this.categoriaProdutoService.buscarPorId(c.id).subscribe({
+  editarMarca(c: MarcaProduto): void {
+    this.marcaProdutoService.buscarPorId(c.id).subscribe({
       next: (data) => {
-        this.catproduto = data;
+        this.marcaproduto = data;
 
-        this.catProdForm = this.fb.group({
-          
-          id: [this.catproduto.id],
-          nomeDesc: [this.catproduto.nomeDesc, Validators.required],
-          empresa: [this.catproduto.empresa, Validators.required],
+        this.marcaProdForm = this.fb.group({
+          id: [this.marcaproduto.id],
+          nomeDesc: [this.marcaproduto.nomeDesc, Validators.required],
+          empresa: [this.marcaproduto.empresa, Validators.required],
         });
       },
       error: (error) => {
@@ -182,71 +126,54 @@ export class MarcaProdutoComponent implements OnInit {
     });
   }
 
-  
-  
-  
-  
-  deletar(c: CategoriaProduto): void {
+  deletar(c: MarcaProduto): void {
     var confir = confirm('Deseja mesmo deletar?');
+
     if (confir) {
-      this.categoriaProdutoService.deletar(c);
-      
-      
-      this.listaCategorias(this.paginaAtual);
+      this.marcaProdutoService.deletar(c);
+      this.listaMarcas(this.paginaAtual);
     }
   }
 
-  
-  
   setPesquisa(val: String): void {
     this.varPesquisa = val;
   }
 
-  
   pesquisar(): void {
-    
     if (this.varPesquisa.length <= 0) {
-      this.listaCategorias(this.paginaAtual);
+      this.listaMarcas(this.paginaAtual);
       return;
     }
-    
-    this.categoriaProdutoService
-      .buscarPorDescCatgoria(this.varPesquisa)
-      .subscribe({
-        next: (res) => {
-          
-          
-          this.lista = res;
-        },
-        error: (error) => {
-          
-          
-          alert(error);
-        },
-      });
+
+    this.marcaProdutoService.buscarPorDescMarca(this.varPesquisa).subscribe({
+      next: (res) => {
+        this.lista = res;
+      },
+      error: (error) => {
+        alert(error);
+      },
+    });
   }
-  
-  
-  
-  
+
   buscarPagina(p: Number): void {
-    
-    
     this.paginaAtual = p;
-    this.listaCategorias(this.paginaAtual);
+
+    this.listaMarcas(this.paginaAtual);
   }
 
   voltar(): void {
     if (this.paginaAtual.valueOf() > 0) {
       this.paginaAtual = this.paginaAtual.valueOf() - 1;
     }
-    this.listaCategorias(this.paginaAtual);
+
+    this.listaMarcas(this.paginaAtual);
   }
 
   avancar(): void {
     if (this.paginaAtual.valueOf() < this.qtdPagina.valueOf()) {
       this.paginaAtual = this.paginaAtual.valueOf() + 1;
     }
-    this.listaCategorias(this.paginaAtual);
+
+    this.listaMarcas(this.paginaAtual);
   }
 }
