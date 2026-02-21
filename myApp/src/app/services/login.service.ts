@@ -70,6 +70,12 @@ export class LoginService {
 
   
   
+  codEmpresa() {
+    return localStorage.getItem('empresa');
+  }
+
+  
+  
   
   logar(usuario: Usuario) {
     

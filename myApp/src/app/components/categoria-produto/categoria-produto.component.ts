@@ -15,9 +15,12 @@ export class CategoriaProdutoComponent {
   
   
   
+  
+  
   constructor(
     private fb: FormBuilder,
-    private categoriaProdutoService: CategoriaProdutoService
+    private categoriaProdutoService: CategoriaProdutoService,
+    private loginService: LoginService
   ) {}
 
   /*pegar dados do formulario q ta no categoria-produto.component.html e verificando
@@ -29,6 +32,10 @@ export class CategoriaProdutoComponent {
   catProdForm = this.fb.group({
     id: [],
     nomeDesc: [null, Validators.required],
+    
+    
+    
+    empresa: [Number(this.loginService.codEmpresa()), Validators.required],
   });
 
   
@@ -39,7 +46,6 @@ export class CategoriaProdutoComponent {
   
   
   catProdObjeto(): CategoriaProduto {
-    console.info('chamou cadProdObjeto');
     return {
       id: this.catProdForm.get('id')?.value!,
       nomeDesc: this.catProdForm.get('nomeDesc')?.value!,
@@ -50,8 +56,10 @@ export class CategoriaProdutoComponent {
   
   
   
+  
+  
   cadProdCategoria() {
     const categoria = this.catProdObjeto();
-    console.info('---> ' + categoria);
+    console.info(categoria);
   }
 }
