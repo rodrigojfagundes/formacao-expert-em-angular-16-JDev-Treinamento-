@@ -16,6 +16,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login/login.component';
 import { guardiaoGuard } from './guard/guardiao.guard';
 import { NavbarComponent } from './navbar/navbar.component';
+import { CategoriaProdutoComponent } from './components/categoria-produto/categoria-produto.component';
 
 
 export const appRoutes: Routes = [
@@ -34,12 +35,26 @@ export const appRoutes: Routes = [
     canActivate: [guardiaoGuard],
     data: { role: ['ROLE_ADMIN', 'ROLE_USER', 'ROLE_FUNCIONARIO'] },
   },
+  
+  
+  {
+    path: 'categoria-produto',
+    component: CategoriaProdutoComponent,
+    canActivate: [guardiaoGuard],
+    data: { role: ['ROLE_ADMIN', 'ROLE_USER', 'ROLE_FUNCIONARIO'] },
+  },
 ];
 
 export const routes = RouterModule.forRoot(appRoutes);
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, LoginComponent, NavbarComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    LoginComponent,
+    NavbarComponent,
+    CategoriaProdutoComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
