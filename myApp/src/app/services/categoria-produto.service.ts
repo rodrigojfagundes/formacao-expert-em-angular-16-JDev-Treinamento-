@@ -21,6 +21,32 @@ export class CategoriaProdutoService {
   
   
   
+  deletar(cat: CategoriaProduto): void {
+    this.http.post<String>(this.urlApi + 'deleteCategoria', cat).subscribe({
+      next: (res) => {
+        console.info('-------------');
+        console.info(res);
+
+        
+        var varResposta = JSON.stringify(res);
+        
+        var jsonResposta = JSON.parse(varResposta);
+        if (jsonResposta.error != undefined) {
+          alert(jsonResposta.error);
+        } else {
+          alert(res);
+        }
+      },
+      error: (error) => {
+        alert('erro: ' + error);
+        console.info(error);
+      },
+    });
+  }
+
+  
+  
+  
   salvarCategoriaProduto(categoriaProduto: CategoriaProduto) {
     
     

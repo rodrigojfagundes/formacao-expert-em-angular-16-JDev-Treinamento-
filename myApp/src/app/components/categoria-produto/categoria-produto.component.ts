@@ -157,4 +157,18 @@ export class CategoriaProdutoComponent implements OnInit {
       },
     });
   }
+
+  
+  
+  
+  
+  deletar(c: CategoriaProduto): void {
+    var confir = confirm('Deseja mesmo deletar?');
+    if (confir) {
+      this.categoriaProdutoService.deletar(c);
+      
+      
+      this.listaCategorias();
+    }
+  }
 }
