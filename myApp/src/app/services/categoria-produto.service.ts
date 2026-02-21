@@ -61,4 +61,15 @@ export class CategoriaProdutoService {
       this.urlApi + 'listarCategoriaProduto/' + this.loginService.codEmpresa()
     );
   }
+
+  
+  
+  
+  
+  
+  
+  
+  buscarPorId(id: any) {
+    return this.http.get<CategoriaProduto>(this.urlApi + 'buscarPorId/' + id);
+  }
 }
