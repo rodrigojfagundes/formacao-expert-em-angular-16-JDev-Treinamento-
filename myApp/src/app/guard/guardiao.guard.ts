@@ -11,5 +11,14 @@ export const guardiaoGuard: CanActivateFn = (route, state) => {
   console.info(route.data);
 
   
+  var username = localStorage.getItem('username');
+  
+  var roles = route.data;
+
+  
+  console.info('username ' + username);
+  console.info(route.data);
+
+  
   return inject(LoginService).usuarioLogado();
 };

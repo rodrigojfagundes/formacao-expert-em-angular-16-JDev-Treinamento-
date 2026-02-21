@@ -89,8 +89,13 @@ export class LoginService {
         
         var jwt = JSON.parse(respJson);
         
+        
+        
+        
+        
+        
         localStorage.setItem('Authorization', jwt.Authorization);
-
+        localStorage.setItem('username', jwt.username);
         
         this.routers.navigate(['home']);
       },
