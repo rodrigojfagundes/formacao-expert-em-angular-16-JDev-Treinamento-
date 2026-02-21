@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Usuario } from '../model/usuario';
+import { Route, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,8 @@ export class LoginService {
   private urlApi = environment.urlApi;
 
   
-  constructor(private http: HttpClient) {}
+  
+  constructor(private http: HttpClient, private routers: Router) {}
 
   
   usuarioLogado() {
@@ -87,6 +89,9 @@ export class LoginService {
         var jwt = JSON.parse(respJson);
         
         localStorage.setItem('Authorization', jwt.Authorization);
+
+        
+        this.routers.navigate(['home']);
       },
 
       error: (error) => {

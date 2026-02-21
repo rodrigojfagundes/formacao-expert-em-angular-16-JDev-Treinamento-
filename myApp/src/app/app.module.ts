@@ -12,6 +12,19 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { InterceptorProjetoInterceptor } from './interceptor/interceptor-projeto.interceptor';
 import { HomeComponent } from './home/home.component';
+import { RouterModule, Routes } from '@angular/router';
+
+
+export const appRoutes: Routes = [
+  
+  { path: 'login', component: AppComponent },
+  
+  { path: '', component: AppComponent },
+  
+  { path: 'home', component: HomeComponent },
+];
+
+export const routes = RouterModule.forRoot(appRoutes);
 
 @NgModule({
   declarations: [AppComponent, HomeComponent],
@@ -20,6 +33,7 @@ import { HomeComponent } from './home/home.component';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    routes,
   ],
   
   
