@@ -42,20 +42,22 @@ export class FormaPagamentoService {
   }
 
   salvarFp(fm: FormaPagamento) {
-    return this.http.post<String>(this.urlApi + 'salvarFm', fm).subscribe({
-      next: (res) => {
-        var varresposta = JSON.stringify(res);
-        var jsonResposta = JSON.parse(varresposta);
+    return this.http
+      .post<String>(this.urlApi + 'salvarFormaPagamento', fm)
+      .subscribe({
+        next: (res) => {
+          var varresposta = JSON.stringify(res);
+          var jsonResposta = JSON.parse(varresposta);
 
-        if (jsonResposta.error != undefined) {
-          alert(jsonResposta.error);
-        } else {
-          alert('Salvo com sucesso ID:' + jsonResposta.id);
-        }
-      },
-      error: (error) => {
-        alert(error.error.error);
-      },
-    });
+          if (jsonResposta.error != undefined) {
+            alert(jsonResposta.error);
+          } else {
+            alert('Salvo com sucesso ID:' + jsonResposta.id);
+          }
+        },
+        error: (error) => {
+          alert(error.error.error);
+        },
+      });
   }
 }
