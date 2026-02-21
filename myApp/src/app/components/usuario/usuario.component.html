@@ -18,7 +18,27 @@
     />
   </div>
 
-  <div class="col-5">
+  <div class="col-10">
+    <label for="pessoa" class="form-label">Pessoa</label>
+    <input
+      type="text"
+      maxlength="100"
+      class="form-control"
+      id="pessoa"
+      name="pessoa"
+      required
+      formControlName="pessoa"
+      readonly
+    />
+    <div
+      *ngIf="userProdForm.get('pessoa')?.errors"
+      style="font-size: 8px; color: brown"
+    >
+      * Pessoa
+    </div>
+  </div>
+
+  <div class="col-6">
     <label for="login" class="form-label">Login</label>
     <input
       type="text"
@@ -37,7 +57,7 @@
     </div>
   </div>
 
-  <div class="col-5">
+  <div class="col-6">
     <label for="senha" class="form-label">Senha</label>
     <input
       type="password"
@@ -61,6 +81,7 @@
   <thead>
     <tr>
       <th scope="col">ID</th>
+      <th scope="col">Login</th>
       <th scope="col">Nome</th>
       <th scope="col">Editar</th>
       <th scope="col">Deletar</th>
@@ -71,6 +92,7 @@
     <tr *ngFor="let c of lista">
       <td>{{ c.id }}</td>
       <td>{{ c.login }}</td>
+      <td>{{ c.pessoa?.nome }}</td>
 
       <button type="button" class="btn btn-primary" (click)="editarUser(c.id)">
         Ver

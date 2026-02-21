@@ -24,8 +24,9 @@ export class UsuarioComponent implements OnInit {
     this.user = new UserPessoa();
     this.userProdForm = this.fb.group({
       id: [],
-      login: [[null, Validators.required]],
-      senha: [[null, Validators.required]],
+      login: [null, Validators.required],
+      senha: [null, Validators.required],
+      pessoa: [null, Validators.required],
     });
   }
 
@@ -50,6 +51,7 @@ export class UsuarioComponent implements OnInit {
       id: [],
       login: [[null, Validators.required]],
       senha: [[null, Validators.required]],
+      pessoa: [null, Validators.required],
     });
   }
 
@@ -69,6 +71,7 @@ export class UsuarioComponent implements OnInit {
           id: [this.user.id],
           login: [this.user.login],
           senha: [this.user.senha],
+          pessoa: [this.user.pessoa?.nome],
         });
       },
       error: (error) => {
